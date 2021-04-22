@@ -1,0 +1,382 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+}
+
+header h1 {
+  font-size: 4rem;
+  margin-top: 1.8rem;
+}
+
+header img {
+  display: none;
+}
+
+.stats {
+  display: flex;
+  width: 100%;
+}
+
+.lib-stats {
+  border: 1px solid rgba(24, 77, 104, 0.8);
+  padding: 0.7rem 3rem;
+  font-size: 1.7rem;
+  border-radius: 4px;
+  margin: 1.8rem 0 2.4rem 0;
+}
+
+.lib-stats h2 {
+  font-size: 2.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.stat-number-column,
+.label-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number-column {
+  text-align: center;
+}
+
+.legend {
+  width: 100%;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2.4rem;
+}
+
+.read-key-container,
+.not-read-key-container {
+  display: flex;
+  align-items: center;
+}
+
+.legend span {
+  margin-left: 0.4rem;
+  font-size: 1.7rem;
+}
+
+.read-color-key,
+.not-read-color-key {
+  width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  margin: 1.3rem 0;
+}
+
+.read-color-key {
+  background: linear-gradient(
+    135deg,
+    rgba(24, 77, 104, 0.8) 0%,
+    rgba(87, 202, 133, 0.8) 100%
+  );
+}
+
+.not-read-color-key {
+  background: linear-gradient(135deg, #e3e3e3 0%, #5d6874 100%);
+}
+
+.library {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.book {
+  width: 100%;
+  border-radius: 4px;
+  margin: 1rem;
+  font-size: 1.7rem;
+  background-image: linear-gradient(135deg, #e3e3e3 0%, #5d6874 100%);
+  position: relative;
+}
+
+.book li {
+  margin: 1rem;
+  list-style: none;
+}
+
+.book li:first-of-type {
+  font-size: 2.2rem;
+}
+
+.book li:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.book button,
+.new-book-form button:first-of-type {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  position: absolute;
+  top: 0.6rem;
+  right: 1rem;
+}
+
+.read {
+  background: linear-gradient(
+    135deg,
+    rgba(24, 77, 104, 0.8) 0%,
+    rgba(87, 202, 133, 0.8) 100%
+  );
+}
+
+.add-book-btn {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(0, 119, 255);
+  font-size: 2.2rem;
+  color: white;
+  bottom: 25px;
+  right: 25px;
+  border: none;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+/* Toggle switch for read/unread */
+
+.toggle-switch-container {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.toggle-switch-container > span {
+  vertical-align: bottom;
+  font-size: 1.2rem;
+}
+
+/* The switch - the box around the slider */
+.toggle-switch-read-unread {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.toggle-switch-read-unread input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider::before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+.new-book-form-modal {
+  display: none;
+  padding: 0.7rem 3rem;
+  font-size: 1.7rem;
+  margin: 1.8rem 0 2.4rem 0;
+  position: fixed;
+  width: 96%;
+  border-radius: 4px;
+  height: 98vh;
+  top: 1vh;
+  left: 2%;
+  z-index: 1;
+  background-color: white;
+  padding: 1rem;
+}
+
+.new-book-form-modal input[type="text"],
+.new-book-form-modal input[type="number"] {
+  padding: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.new-book-form-modal label {
+  display: block;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.open {
+  display: inherit;
+}
+
+.radio-form-row {
+  display: flex;
+  border-radius: 4px;
+  margin: 1rem 0 1rem;
+}
+
+.read-radio,
+.unread-radio {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.read-radio label,
+.unread-radio label {
+  margin-left: 1rem;
+  position: relative;
+  top: 1px;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  padding: 1rem;
+  font-size: 1.7rem;
+  margin-top: 2rem;
+}
+
+/* Tablet */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  header img {
+    display: block;
+    width: 110px;
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem;
+  }
+
+  .title-and-pic {
+    display: flex;
+  }
+
+  .title-and-pic h1 {
+    margin-left: 1rem;
+  }
+
+  .book {
+    width: 80%;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) and (max-width: 991px) {
+  .book {
+    width: 47%;
+  }
+  .library {
+    justify-content: start;
+  }
+  header img {
+    display: block;
+    width: 110px;
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem;
+  }
+
+  .title-and-pic {
+    display: flex;
+  }
+
+  .title-and-pic h1 {
+    margin-left: 1rem;
+  }
+}
+
+/* Big Monitor */
+@media only screen and (min-width: 992px) {
+  .book {
+    width: 31%;
+  }
+  .library {
+    justify-content: start;
+  }
+  header img {
+    display: block;
+    width: 110px;
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem;
+  }
+
+  .title-and-pic {
+    display: flex;
+  }
+
+  .title-and-pic h1 {
+    margin-left: 1rem;
+  }
+}
