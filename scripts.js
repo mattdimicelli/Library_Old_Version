@@ -6,6 +6,7 @@ const libraryDiv = document.querySelector(`.library`);
 const addBookBtn = document.querySelector(`.add-book-btn`);
 const submitBtnForAddBook = document.querySelector(`.submit-btn`);
 const newBookFormModal = document.querySelector(`.new-book-form-modal`);
+const modalContainer = document.querySelector(`.modal-container`);
 const titleInput = document.querySelector(`#title`);
 const authorInput = document.querySelector(`#author`);
 const pagesInput = document.querySelector(`#pages`);
@@ -39,16 +40,19 @@ libraryDiv.addEventListener(`click`, (e) => {
 
 addBookBtn.addEventListener(`click`, () => {
   newBookFormModal.classList.add(`open`);
+  modalContainer.classList.add(`open`);
 });
 
 closeFormIcon.addEventListener(`click`, (e) => {
   e.preventDefault();
   newBookFormModal.classList.remove(`open`);
+  modalContainer.classList.remove(`open`);
 });
 
 submitBtnForAddBook.addEventListener(`click`, (e) => {
   addBookToLibrary(e);
   newBookFormModal.classList.remove(`open`);
+  modalContainer.classList.remove(`open`);
 });
 
 function Book(title, author, pages, alreadyRead) {

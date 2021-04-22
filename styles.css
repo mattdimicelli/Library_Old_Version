@@ -242,16 +242,16 @@ input:checked + .slider::before {
   display: none;
   padding: 0.7rem 3rem;
   font-size: 1.7rem;
-  margin: 1.8rem 0 2.4rem 0;
   position: fixed;
   width: 96%;
   border-radius: 4px;
-  height: 98vh;
-  top: 1vh;
-  left: 2%;
+  height: 96vh;
+  top: 0;
+  left: 0;
   z-index: 1;
   background-color: white;
   padding: 1rem;
+  border: 3px solid black;
 }
 
 .new-book-form-modal input[type="text"],
@@ -263,10 +263,6 @@ input:checked + .slider::before {
 .new-book-form-modal label {
   display: block;
   padding: 1rem 1rem 1rem 0;
-}
-
-.open {
-  display: inherit;
 }
 
 .radio-form-row {
@@ -299,6 +295,24 @@ input:checked + .slider::before {
   margin-top: 2rem;
 }
 
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  display: none;
+}
+
+.open {
+  display: flex;
+}
+
+.new-book-form-modal {
+  display: block;
+}
+
 /* Tablet */
 @media only screen and (min-width: 576px) and (max-width: 768px) {
   header img {
@@ -322,6 +336,11 @@ input:checked + .slider::before {
 
   .book {
     width: 80%;
+  }
+
+  .new-book-form-modal {
+    width: 80%;
+    position: relative;
   }
 }
 
@@ -351,6 +370,11 @@ input:checked + .slider::before {
   .title-and-pic h1 {
     margin-left: 1rem;
   }
+
+  .new-book-form-modal {
+    width: 60%;
+    position: relative;
+  }
 }
 
 /* Big Monitor */
@@ -378,5 +402,9 @@ input:checked + .slider::before {
 
   .title-and-pic h1 {
     margin-left: 1rem;
+  }
+  .new-book-form-modal {
+    width: 50%;
+    position: relative;
   }
 }
