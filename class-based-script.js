@@ -49,10 +49,8 @@ closeFormIcon.addEventListener(`click`, (e) => {
   modalContainer.classList.remove(`open`);
 });
 
-submitBtnForAddBook.addEventListener(`click`, (e) => {
-  addBookToLibrary(e);
-  newBookFormModal.classList.remove(`open`);
-  modalContainer.classList.remove(`open`);
+submitBtnForAddBook.addEventListener(`click`, () => {
+  addBookToLibrary();
 });
 
 class Book {
@@ -84,20 +82,23 @@ function toggleReadNotRead(bookTitle) {
   updateStats();
 }
 
-function addBookToLibrary(e) {
-  e.preventDefault();
-  const selectedRadioBtn =
+function addBookToLibrary() {
+  if(titleInput.checkValidity() && authorInput.checkValidity() && pagesInput.checkValidity() && readNotReadRadioBtns.checkValidity()) {
+    newBookFormModal.classList.remove(`open`);
+    modalContainer.classList.remove(`open`);
+    const selectedRadioBtn =
     readRadioBtn.checked === true ? readRadioBtn : notReadRadioBtn;
-  const book = new Book(
+    const book = new Book(
     titleInput.value,
     authorInput.value,
     pagesInput.value,
     selectedRadioBtn.value
-  );
-  myLibrary.push(book);
-  displayBooks(myLibrary);
-  saveToLocalStorage();
-  updateStats();
+    );
+    myLibrary.push(book);
+    displayBooks(myLibrary);
+    saveToLocalStorage();
+    updateStats();
+  }
 }
 
 function generateReadStat() {
